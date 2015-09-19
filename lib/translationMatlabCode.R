@@ -1,4 +1,6 @@
-#Code thanks to Hiroyasu Ando
+#Code made by Hiroyasu Ando, translated to R by Pablo Vicente-Munuera
+
+library("expm", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/library")
 
 #communicability angle for adjacency matrix A
 # G=expm(A); #expm(X) = V*diag(exp(diag(D)))/V
@@ -9,7 +11,17 @@
 # end
 # end
 communicabilityAngle <- function(adjacencyM){
+  expAM = expm(adjacencyM)
+  nNodes = length (adjacencyM[1,])
   
+  comAngl <- adjacencyM
+  
+  for (i in 1:nNodes){
+    for (j in 1:nNodes){
+      comAngl[i,j] <- acos(expAM[i,j]/sqrt(expAM[i,i]*expAM[j,j]));
+    }
+  }
+  return (comAngl)
 }
 
 # Communicability distance 
@@ -21,7 +33,17 @@ communicabilityAngle <- function(adjacencyM){
 # end
 # end
 communicabilityDistance <- function(adjacencyM){
+  expAM = expm(adjacencyM)
+  nNodes = length (adjacencyM[1,])
   
+  comDist <- adjacencyM
+  
+  for (i in 1:nNodes){
+    for (j in 1:nNodes){
+      comDist[i,j] <- sqrt(expAM[i,i]+expAM[j,j]- 2*expAM[i,j]);
+    }
+  }
+  return (comDist)
 }
 
 # edge betweenness centrality #
