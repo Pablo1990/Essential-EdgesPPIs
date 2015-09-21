@@ -30,7 +30,8 @@ for gene in genesFile:
 	for line in data:
 		line = line.upper()
 		#print (line)
-		if line.startswith(gene[:-2]): #Shitty characters like '\n' and things like that
+		geneLine = line.split('\t')[0]
+		if (geneLine == gene[:-2]): #Shitty characters like '\n' and things like that
 			#print (line)
 			newLine = gene[:-2] + ";"
 			#newLine = newLine +  + ", "
