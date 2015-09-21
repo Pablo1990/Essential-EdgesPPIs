@@ -35,6 +35,6 @@ for ppi in ppis:
 
 	overlapFile.write(gene[0] + ";" + gene[1][:-2] + ";" + str(functionsGene1) + ";" + str(functionsGene2))
 	overlap = list(set(functionsGene1) & set(functionsGene2))
-	overlapFile.write(";" + str(overlap) + ";" + str(len(overlap)))
+	overlapFile.write(";" + str(overlap) + ";" + str(len(overlap)) + "\n")
 
 
