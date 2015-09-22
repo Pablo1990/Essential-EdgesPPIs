@@ -137,7 +137,7 @@ edge_betweenness_wei <- function(G) {
     NP <- array(0, c(1,n))
     NP[u] <- 1
     S <- array(T, c(1,n))
-    P <- array(F, c(n))
+    P <- array(F, c(n,n))
     Q <- array(0, c(1,n))
     q <- n
     
@@ -159,7 +159,7 @@ edge_betweenness_wei <- function(G) {
             P[w,] <- 0;
             P[w,v] <- 1; 
           }
-          else if (Duw==D(w)){
+          else if (Duw==D[w]){
             NP[w] <- NP[w] + NP[v];
             P[w,v] <- 1
           }
@@ -167,7 +167,7 @@ edge_betweenness_wei <- function(G) {
       }
       
       minD <- min(D[S])
-      if is.empty.model(minD){
+      if (length(minD) == 0){
         break 
       }
       else if (is.infinite(minD)){
@@ -186,5 +186,6 @@ edge_betweenness_wei <- function(G) {
       }
     }
   }
+  return (list(EBC, BC))
 }
-#########∫
+#########
