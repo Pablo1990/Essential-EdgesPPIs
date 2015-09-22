@@ -127,15 +127,64 @@ edge_betweenness_wei <- function(G) {
 #
 #   Mika Rubinov, UNSW, 2007-2010
 
-n <- length(G)
-BC <- matrix(0, n, 1)
-EBC <- array(0, n)
-
-for (u in 1:n){
-  D <- array(Inf, c(1,n))
-  D[u] <- 0
+  n <- length(G)
+  BC <- matrix(0, n, 1)
+  EBC <- array(0, n)
+  
+  for (u in 1:n){
+    D <- array(Inf, c(1,n))
+    D[u] <- 0
+    NP <- array(0, c(1,n))
+    NP[u] <- 1
+    S <- array(T, c(1,n))
+    P <- array(F, c(n))
+    Q <- array(0, c(1,n))
+    q <- n
+    
+    G1 <- G
+    V <- u
+    
+    while (1){ #I don't like this
+      S[u] <- 0;
+      G1[,V] <- 0
+      for (v in V) {
+        Q[q] <- v
+        q <- q - 1
+        W <- which(G1[v,] != 0)
+        for (w in W){
+          Duw <- D[v] +  G1[v,w]
+          if (Duw<D[w]){
+            D[w] <- Duw
+            NP[w] <- NP[v];
+            P[w,] <- 0;
+            P[w,v] <- 1; 
+          }
+          else if (Duw==D(w)){
+            NP[w] <- NP[w] + NP[v];
+            P[w,v] <- 1
+          }
+        }
+      }
+      
+      minD <- min(D[S])
+      if is.empty.model(minD){
+        break 
+      }
+      else if (is.infinite(minD)){
+        Q[1:q] <- which(is.infinite(D))
+        break
+      }
+      V <- which(D == minD);
+    }
+    DP <- array(0, c(n,1));
+    for (w in Q[1:n-1]) {
+      BC[w] <- BC[w] + DP[w];
+      for (v in which(P[w,] != 0)) {
+        DPvw <- (1+DP[w]) * NP[v] / NP[w];
+        DP[v] <- DP[v] + DPvw;
+        EBC[v,w] <- EBC[v,w] + DPvw;
+      }
+    }
+  }
 }
-
-
-}
-##########
+#########∫
