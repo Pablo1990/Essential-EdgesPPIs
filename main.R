@@ -46,3 +46,5 @@ write.table (resultsComAngleEdges[order(resultsEdgeBetw)], file = "data/resultsC
 # resultsComDist[adjacencyMatrix == 0] <- 0
 # resultsComDist[resultsComDist > 0]
 # resultsComDist[order(resultsEdgeBetw)]
+
+

@@ -18,7 +18,7 @@ communicabilityAngle <- function(adjacencyM){
   
   for (i in 1:nNodes){
     for (j in 1:nNodes){
-      comAngl[i,j] <- acos(expAM[i,j]/sqrt(expAM[i,i]*expAM[j,j]));
+      comAngl[i,j] <- 180*acos(expAM[i,j]/sqrt(expAM[i,i]*expAM[j,j]))/pi;
     }
   }
   return (comAngl)
