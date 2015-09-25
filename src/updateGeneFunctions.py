@@ -1,4 +1,4 @@
-#Code by Pablo Vicente-Munuera
+#Developed by Pablo Vicente-Munuera
 
 def extractCategoryFrom(line):
 	fields = line.split('\t')

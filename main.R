@@ -1,4 +1,5 @@
-#Created by Pablo Vicente-Munuera
+#Developed by Pablo Vicente-Munuera
+
 source('~/Documents/Dropbox/MScBioinformatics/Thesis/Project/Essential-EdgesPPIs/lib/translationMatlabCode.R', echo=TRUE)
 
 library('igraph')

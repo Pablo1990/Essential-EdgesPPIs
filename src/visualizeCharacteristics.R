@@ -1,3 +1,5 @@
+#Developed by Pablo Vicente-Munuera
+
 dataStatistics <- read.csv2(file = "data/Initial-Data.csv")
 
 eDataStatistics <- dataStatistics[dataStatistics$Type.of.link == "E",]

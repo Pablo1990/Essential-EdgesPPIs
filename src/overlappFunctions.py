@@ -1,4 +1,4 @@
-#Code by Pablo Vicente-Munuera
+#Developed by Pablo Vicente-Munuera
 
 ppis = open('../data/ppis.csv', 'r')
 ppis.readline()
