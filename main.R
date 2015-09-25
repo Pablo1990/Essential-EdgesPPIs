@@ -14,6 +14,13 @@ library('igraph')
 
 adjacencyData <- read.csv(header = F, file = "data/YeastS-main.txt", sep = "\t")
 
+vertices <- read.csv2(header = F, file = "../docs/proteins.csv")
+
+vertices <- vertices$V2
+
+row.names(adjacencyData) <- vertices
+colnames(adjacencyData) <- vertices
+
 adjacencyMatrix <- as.matrix(adjacencyData)
 
 diag(adjacencyMatrix) <- 0
@@ -32,13 +39,27 @@ resultsComDistEdges <- resultsComDist[E(graphM)]
 
 resultsComDistEdges[order(resultsEdgeBetw)]
 
-write.table (resultsComDistEdges[order(resultsEdgeBetw)], file = "data/resultsComDistEdges.txt", row.names = F, col.names = F)
+write(E(graphM)[order(resultsEdgeBetw)], file = "data/orderPPIs1.txt")
+
+write.graph(graphM, file = "data/orderPPIs1.txt", format = )
+
+results <- data.frame(row.names = E(graphM), resultsComAngleEdges, resultsComDistEdges, resultsEdgeBetw)
+
+write.csv2(results, file = "data/resultsGeneral.csv")
+
+write.table (resultsComDistEdges[order(resultsEdgeBetw)], file = "data/resultsComDistEdges.txt")
+
+sink(file = "data/orderPPIs1.txt")
+
+E(graphM)
+
+sink(file = NULL)
 
 resultsComAngleEdges <- resultsComAngle[E(graphM)]
 
 resultsComAngleEdges[order(resultsEdgeBetw)]
 
-write.table (resultsComAngleEdges[order(resultsEdgeBetw)], file = "data/resultsComAngleEdges.txt", row.names = F, col.names = F)
+write.table (resultsComAngleEdges[order(resultsEdgeBetw)], file = "data/resultsComAngleEdges.txt")
 
 #write.table (resultsEdgeBetw, file = "data/resultsEdgeBetweennessPPIsYeast.txt", row.names = F, col.names = F)
 
