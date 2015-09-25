@@ -13,3 +13,7 @@ plot(y = neDataStatistics$edge.betweenness.centrality, x = neDataStatistics$Comm
 legend('topright', c('E', 'EE', 'NE') , 
        lty=1, col=c('red', 'cyan', 'gray'), bty='n', cex=1)
 par(new = F)
+
+mean(neDataStatistics$Communicability.distance)
+mean(eeDataStatistics$Communicability.distance)
+mean(eDataStatistics$Communicability.distance)
