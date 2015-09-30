@@ -1,8 +1,9 @@
 #Developed by Pablo Vicente-Munuera
 
+library('igraph')
 source('~/Documents/Dropbox/MScBioinformatics/Thesis/Project/Essential-EdgesPPIs/lib/translationMatlabCode.R', echo=TRUE)
 
-library('igraph')
+
 
 #Examples:
 #adjacencyM <- matrix( c(0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1), nrow=4, ncol = 4, byrow = T)
@@ -15,7 +16,7 @@ library('igraph')
 
 adjacencyData <- read.csv(header = F, file = "data/YeastS-main.txt", sep = "\t")
 
-vertices <- read.csv2(header = F, file = "../docs/proteins.csv")
+vertices <- read.csv2(header = F, file = "docs/proteins.csv")
 
 vertices <- vertices$V2
 
@@ -30,15 +31,38 @@ resultsEdgeBetw <- edge.betweenness(graph.adjacency(adjacencyMatrix, mode = "und
 
 graphM <- graph.adjacency(adjacencyMatrix, mode = "undirected")
 
-resultsEdgeBetw[order(resultsEdgeBetw)]
-
 resultsComAngle <- communicabilityAngle(adjacencyMatrix)
 
 resultsComDist <- communicabilityDistance(adjacencyMatrix)
 
-resultsComDistEdges <- resultsComDist[E(graphM)]
+resultsComAngle[adjacencyMatrix == 0] <- 0
 
-resultsComDistEdges[order(resultsEdgeBetw)]
+row.names(resultsComAngle) <- vertices
+colnames(resultsComAngle) <- vertices
+
+resultsComDist[adjacencyMatrix == 0] <- 0
+
+row.names(resultsComDist) <- vertices
+colnames(resultsComDist) <- vertices
+
+ppis <- read.csv2(header=T, file="data/ppis.csv")
+
+finalResultsComAngle <- c()
+finalResultsComDist <- c()
+
+for (i in 1:length(ppis[,1])){
+  finalResultsComAngle <- c(finalResultsComAngle, resultsComAngle[as.character(ppis[i,1]), as.character(ppis[i,2])])
+  finalResultsComDist <- c(finalResultsComDist, resultsComDist[as.character(ppis[i,1]), as.character(ppis[i,2])])
+}
+
+write.csv(finalResultsComAngle, file="data/communicabilityAngleGoodOne.txt")
+
+write.csv(finalResultsComDist, file="data/communicabilityDistanceGoodOne.txt")
+
+#finalResultsComAngle
+
+
+#-----------
 
 write(E(graphM)[order(resultsEdgeBetw)], file = "data/orderPPIs1.txt")
 

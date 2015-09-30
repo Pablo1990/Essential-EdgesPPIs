@@ -45,7 +45,3 @@ communicabilityDistance <- function(adjacencyM){
   }
   return (comDist)
 }
-#Replacement to the matlab function edge_betweenness_wei
-#Based on the same algorithm (Brandes - 2001) - http://igraph.org/r/doc/betweenness.html
-edge.betweenness()
-#########

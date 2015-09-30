@@ -19,3 +19,11 @@ par(new = F)
 mean(neDataStatistics$Communicability.distance)
 mean(eeDataStatistics$Communicability.distance)
 mean(eDataStatistics$Communicability.distance)
+
+mean(neDataStatistics$Communicability.distance)
+mean(eeDataStatistics$Communicability.distance)
+mean(eDataStatistics$Communicability.distance)
+
+mean(neDataStatistics$edge.betweenness.centrality)
+mean(eeDataStatistics$edge.betweenness.centrality)
+mean(eDataStatistics$edge.betweenness.centrality)
