@@ -31,6 +31,14 @@ resultsEdgeBetw <- edge.betweenness(graph.adjacency(adjacencyMatrix, mode = "und
 
 graphM <- graph.adjacency(adjacencyMatrix, mode = "undirected")
 
+edgesBetw <- get.edgelist(graphM)
+
+edgesBetw <- as.matrix(resultsEdgeBetw)
+
+edgesBetw <- cbind(edgesBetw, get.edgelist(graphM))
+
+cbind(edgesBetw, as.matrix(resultsEdgeBetw))
+
 resultsComAngle <- communicabilityAngle(adjacencyMatrix)
 
 resultsComDist <- communicabilityDistance(adjacencyMatrix)
@@ -47,17 +55,21 @@ colnames(resultsComDist) <- vertices
 
 ppis <- read.csv2(header=T, file="data/ppis.csv")
 
+finalResultsEdgeBetwenness <- c()
 finalResultsComAngle <- c()
 finalResultsComDist <- c()
 
 for (i in 1:length(ppis[,1])){
-  finalResultsComAngle <- c(finalResultsComAngle, resultsComAngle[as.character(ppis[i,1]), as.character(ppis[i,2])])
-  finalResultsComDist <- c(finalResultsComDist, resultsComDist[as.character(ppis[i,1]), as.character(ppis[i,2])])
+  finalResultsEdgeBetwenness <- c(finalResultsEdgeBetwenness, edgesBetw[(edgesBetw[,2] == as.character(ppis[i,1]) & edgesBetw[,3] == as.character(ppis[i,2])) | (edgesBetw[,2] == as.character(ppis[i,2]) & edgesBetw[,3] == as.character(ppis[i,1]))][1])
+  #finalResultsComAngle <- c(finalResultsComAngle, resultsComAngle[as.character(ppis[i,1]), as.character(ppis[i,2])])
+  #finalResultsComDist <- c(finalResultsComDist, resultsComDist[as.character(ppis[i,1]), as.character(ppis[i,2])])
 }
 
 write.csv(finalResultsComAngle, file="data/communicabilityAngleGoodOne.txt")
 
 write.csv(finalResultsComDist, file="data/communicabilityDistanceGoodOne.txt")
+
+write.csv(finalResultsEdgeBetwenness, file = "data/edgeBetweennessCentrality.txt")
 
 #finalResultsComAngle
 
@@ -66,7 +78,7 @@ write.csv(finalResultsComDist, file="data/communicabilityDistanceGoodOne.txt")
 
 write(E(graphM)[order(resultsEdgeBetw)], file = "data/orderPPIs1.txt")
 
-write.graph(graphM, file = "data/orderPPIs1.txt", format = )
+#write.graph(graphM, file = "data/orderPPIs1.txt", format = )
 
 results <- data.frame(row.names = E(graphM), resultsComAngleEdges, resultsComDistEdges, resultsEdgeBetw)
 
