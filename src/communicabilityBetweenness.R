@@ -11,6 +11,7 @@ communicabilityBetweennessCentrality <- function(adjacencyM){
   cbc <- c()
   
   for (i in 1:vertices){
+    print("Vertex: " + str(i) + "/" + str(vertices))
     row <- adjacencyM[i,]
     col <- adjacencyM[,i]
     
@@ -22,7 +23,7 @@ communicabilityBetweennessCentrality <- function(adjacencyM){
     auxExp[i,] <- 0
     auxExp[,i] <- 0
     
-    auxExp <- auxExp - diag(diag(adjacencyM))
+    auxExp <- auxExp - diag(diag(auxExp))
     
     cbc <- c(cbc, sum(auxExp))
     
@@ -32,4 +33,3 @@ communicabilityBetweennessCentrality <- function(adjacencyM){
   
   return (cbc)
 }
-
