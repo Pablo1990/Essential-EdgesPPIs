@@ -24,7 +24,7 @@ communicabilityBetweennessCentrality <- function(adjacencyM){
     
     auxExp <- auxExp - diag(diag(adjacencyM))
     
-    cbc <- c(cbc, sumAuxExp)
+    cbc <- c(cbc, sum(AuxExp))
     
     adjacencyM[i,] <- row
     adjacencyM[,i] <- col
