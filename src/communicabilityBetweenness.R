@@ -36,7 +36,8 @@ communicabilityBetweennessCentrality <- function(adjacencyM){
 
 #New function developed
 communicabilityEdgeBetweennessCentrality <- function(adjacencyM){
-  expAM <- expm(adjacencyM, method = "Pade")
+  adjacencyM[upper.tri(adjacencyM, diag = FALSE)] <- 0
+  expAM <- expm(adjacencyM)
   nrow <- length(adjacencyM[1,])
   ncol <- length(adjacencyM[,1])
   edges <- length(adjacencyM[adjacencyM == 1])
@@ -46,12 +47,12 @@ communicabilityEdgeBetweennessCentrality <- function(adjacencyM){
     for (j in 1:ncol){
       if (adjacencyM[i,j] == 1){
         actualEdge <- actualEdge + 1
-        print(paste0("Vertex: ", i, "/", edges))
+        print(paste0("Vertex: ", actualEdge, "/", edges))
         
         removedEdge <- adjacencyM[i,j]
         adjacencyM[i,j] <- 0
         
-        auxExp <- (expAM - expm(adjacencyM, method = "Pade")) / expAM
+        auxExp <- (expAM - expm(adjacencyM)) / expAM
         
         auxExp[i,j] <- 0
         

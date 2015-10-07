@@ -11,7 +11,7 @@ library("expm", lib.loc="/Library/Frameworks/R.framework/Versions/3.1/Resources/
 # end
 # end
 communicabilityAngle <- function(adjacencyM){
-  expAM = expm(adjacencyM, method = "Pade")
+  expAM = expm(adjacencyM)
   nNodes = length (adjacencyM[1,])
   
   comAngl <- adjacencyM
@@ -33,7 +33,7 @@ communicabilityAngle <- function(adjacencyM){
 # end
 # end
 communicabilityDistance <- function(adjacencyM){
-  expAM = expm(adjacencyM, method = "Pade")
+  expAM = expm(adjacencyM)
   nNodes = length (adjacencyM[1,])
   
   comDist <- adjacencyM
