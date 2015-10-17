@@ -17,8 +17,8 @@ communicabilityBetweennessCentrality <- function(adjacencyM){
     
     adjacencyM[i,] <- 0
     adjacencyM[,i] <- 0
-    
-    auxExp <- (expAM - expm(adjacencyM)) / expAM
+    B <- expAM - expm(adjacencyM)
+    auxExp <- expAM %*% solve(B)
     
     auxExp[i,] <- 0
     auxExp[,i] <- 0
@@ -52,7 +52,8 @@ communicabilityEdgeBetweennessCentrality <- function(adjacencyM){
         removedEdge <- adjacencyM[i,j]
         adjacencyM[i,j] <- 0
         
-        auxExp <- (expAM - expm(adjacencyM)) / expAM
+        B <- expAM - expm(adjacencyM)
+        auxExp <- expAM %*% solve(B)
         
         auxExp[i,j] <- 0
         
