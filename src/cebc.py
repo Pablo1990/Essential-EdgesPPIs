@@ -10,7 +10,7 @@ def communicability_edge_betweenness_centrality(G, normalized=True):
     nodelist = map(int, nodelist)
     nodelist.sort()
     nodelist = [str(i) for i in nodelist]
-    A = nx.to_numpy_matrix(G, nodelist = nodelist, dtype = numpy.float64)
+    A = nx.to_numpy_matrix(G, nodelist = nodelist)#dtype = numpy.float64
     # convert to 0-1 matrix
     A[A!=0.0] = numpy.float64(1)
     expA = scipy.linalg.expm(A)
@@ -31,7 +31,7 @@ def communicability_edge_betweenness_centrality(G, normalized=True):
         B[i,j] = 0
         B[j,i] = 0
         B -= scipy.diag(scipy.diag(B))
-        sc[cont] = (B.sum())
+        sc[cont] = float(B.sum())
         cont = cont + 1
         # put row and col back
         A[i,j] = cell1
