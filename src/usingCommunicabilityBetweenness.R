@@ -14,6 +14,6 @@ adjacencyMatrix <- as.matrix(adjacencyData)
 
 diag(adjacencyMatrix) <- 0
 
-cbc <- communicabilityBetweennessCentrality(adjacencyM)
+cbc <- communicabilityBetweennessCentrality(adjacencyMatrix)
 
-cebc <- communicabilityEdgeBetweennessCentrality(adjacencyM)
+cebc <- communicabilityEdgeBetweennessCentrality(adjacencyMatrix)
