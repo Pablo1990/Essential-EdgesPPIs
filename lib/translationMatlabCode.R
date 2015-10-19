@@ -45,3 +45,8 @@ communicabilityDistance <- function(adjacencyM){
   }
   return (comDist)
 }
+
+communicabilityEdges <- function(adjacencyM){
+  expAM = expm(adjacencyM)
+  return (expAM * adjacencyM)
+}
