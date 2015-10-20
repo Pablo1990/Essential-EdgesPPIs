@@ -1,9 +1,6 @@
 #Developed by Pablo Vicente-Munuera
 
 library('igraph')
-source('~/Documents/Dropbox/MScBioinformatics/Thesis/Project/Essential-EdgesPPIs/lib/translationMatlabCode.R', echo=TRUE)
-
-
 
 #Examples:
 #adjacencyM <- matrix( c(0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0), nrow=4, ncol = 4, byrow = T)
@@ -12,3 +9,21 @@ source('~/Documents/Dropbox/MScBioinformatics/Thesis/Project/Essential-EdgesPPIs
 
 #communicabilityDistance(adjacencyM)
 
+adjacencyData <- read.csv(header = F, file = "data/YeastS-main.txt", sep = "\t")
+
+vertices <- read.csv2(header = F, file = "docs/proteins.csv")
+
+vertices <- vertices$V2
+
+row.names(adjacencyData) <- vertices
+colnames(adjacencyData) <- vertices
+
+adjacencyMatrix <- as.matrix(adjacencyData)
+
+diag(adjacencyMatrix) <- 0
+
+graphM <- graph.adjacency(adjacencyMatrix, mode = "undirected")
+
+verticesBetweenness <- betweenness(graph = graphM, directed = F)
+
+write.csv2(verticesBetweenness, file = "data/verticesBetweenness.csv")
