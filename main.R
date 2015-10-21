@@ -24,6 +24,14 @@ diag(adjacencyMatrix) <- 0
 
 graphM <- graph.adjacency(adjacencyMatrix, mode = "undirected")
 
-verticesBetweenness <- betweenness(graph = graphM, directed = F)
+cluster <- cluster_edge_betweenness(graphM)
 
-write.csv2(verticesBetweenness, file = "data/verticesBetweenness.csv")
+cluster$membership
+
+clusterEdgeBetw <- list()
+
+for (i in 1:length(cluster)){
+  clusterGraph <- graph.adjacency(adjacencyMatrix[cluster$membership==i, cluster$membership==i], mode = "undirected")
+  clusterEdgeBetw <- edge_betweenness(clusterGraph)
+  write.graph(clusterGraph, file = paste0("data/cluster", i, '.txt'), format = 'ncol')
+}
