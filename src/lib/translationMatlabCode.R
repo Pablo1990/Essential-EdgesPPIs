@@ -21,6 +21,9 @@ communicabilityAngle <- function(adjacencyM){
       comAngl[i,j] <- 180*acos(expAM[i,j]/sqrt(expAM[i,i]*expAM[j,j]))/pi;
     }
   }
+  
+  comAngl[adjacencyM == 0] <- 0
+  
   return (comAngl)
 }
 
@@ -43,6 +46,9 @@ communicabilityDistance <- function(adjacencyM){
       comDist[i,j] <- sqrt(expAM[i,i]+expAM[j,j]- 2*expAM[i,j]);
     }
   }
+  
+  comDist [adjacencyM == 0] <- 0
+  
   return (comDist)
 }
 
