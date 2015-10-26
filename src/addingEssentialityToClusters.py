@@ -1,14 +1,14 @@
 #Developed by Pablo Vicente-Munuera
 
-allFile = open('../data/ClusterPPIs.csv', 'w')
+allFile = open('../data/ClusterSpinglassWeightedCommPPIsPPIs.csv', 'w')
 
 
-for i in range(1,127) :
-	nameFi = '../data/cluster/EBC' + str(i) + '.csv'
+for i in range(1,25) :
+	nameFi = '../data/cluster/EBCSpinglassWeightedCommPPIs' + str(i) + '.csv'
 	ebcs = open(nameFi, 'r')
 	ebcs.readline()
 
-	nameOut = '../data/cluster/EBCEssentialPPIs' + str(i) + '.csv'
+	nameOut = '../data/cluster/EBCEssentialPPIsSpinglassWeightedCommPPIs' + str(i) + '.csv'
 	final = open(nameOut, 'w')
 
 	for ebc in ebcs:

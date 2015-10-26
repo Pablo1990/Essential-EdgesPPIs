@@ -16,17 +16,18 @@ adjacencyMatrix <- as.matrix(adjacencyData)
 
 diag(adjacencyMatrix) <- 0
 
-for (i in 1:length(ppisIndex[,1])){
-  adjacencyMatrix[ppisIndex[i,1], ppisIndex[i,2]] <- as.integer(ppisIndex[i,3]) + 1
-}
-
 graphM <- graph.adjacency(adjacencyMatrix, mode = "undirected")
 
-write.graph(graphM, file = "data/graphPPIs.csv", format = 'ncol')
-
-cluster <- cluster_label_prop(graphM, weights = functionIndex[,3])
+#write.graph(graphM, file = "data/graphPPIs.csv", format = 'ncol')
 
 functionIndex <- read.csv2(header = F, file = "data/graphPPIsIndex.csv")
+
+functionIndex[,3] <- as.numeric(levels(functionIndex[,3])[functionIndex[,3]])
+
+functionIndex[,3] <- functionIndex[,3]
+
+cluster <- cluster_walktrap(graphM)
+
 
 #cluster <- cluster_edge_betweenness(graphM)
 
@@ -37,8 +38,8 @@ cluster$membership
 for (i in 1:length(cluster)){
   clusterGraph <- graph.adjacency(adjacencyMatrix[cluster$membership==i, cluster$membership==i], mode = "undirected")
   #write.csv2(edge_betweenness(clusterGraph), file = paste0("data/cluster/EBC", i, '.csv'))
-  write.graph(clusterGraph, file = paste0("data/cluster/clusterLabelPropFunctions", i, '.csv'), format = 'ncol')
-  eCluster <- read.csv2(file = paste0("data/cluster/clusterLabelPropFunctions", i, '.csv'), header = F)
+  write.graph(clusterGraph, file = paste0("data/cluster/clusterWalktrap", i, '.csv'), format = 'ncol')
+  eCluster <- read.csv2(file = paste0("data/cluster/clusterWalktrap", i, '.csv'), header = F)
   eCluster[, 2] <- edge_betweenness(clusterGraph) 
-  write.csv2(eCluster, file = paste0("data/cluster/EBCLabelPropFunctions", i, '.csv'))
+  write.csv2(eCluster, file = paste0("data/cluster/EBCWalktrap", i, '.csv'))
 }
