@@ -1,14 +1,14 @@
 #Developed by Pablo Vicente-Munuera
 
-allFile = open('../data/ClusterSpinglassWeightedCommPPIsPPIs.csv', 'w')
+#allFile = open('../data/ClusterSpinglassWeightedCommPPIsPPIs.csv', 'w')
 
 
-for i in range(1,25) :
-	nameFi = '../data/cluster/EBCSpinglassWeightedCommPPIs' + str(i) + '.csv'
+for i in range(1,2) :
+	nameFi = '../data/cluster/EBC13and18SpinglassWeighted' + str(i) + '.csv'
 	ebcs = open(nameFi, 'r')
 	ebcs.readline()
 
-	nameOut = '../data/cluster/EBCEssentialPPIsSpinglassWeightedCommPPIs' + str(i) + '.csv'
+	nameOut = '../data/cluster/EBCEssentialPPIs13and18SpinglassWeighted' + str(i) + '.csv'
 	final = open(nameOut, 'w')
 
 	for ebc in ebcs:
@@ -25,8 +25,8 @@ for i in range(1,25) :
 
 			if (proteins[0] == ppi[0] and proteins[1] == ppi[1]) or (proteins[1] == ppi[0] and proteins[0] == ppi[1]) :
 				final.write(essentialPPI[:-2] + ";" + row[2])
-				allFile.write(essentialPPI[:-2] + ";" + row[2])
+				#allFile.write(essentialPPI[:-2] + ";" + row[2])
 				break
 
 
-allFile.close()
+#allFile.close()
