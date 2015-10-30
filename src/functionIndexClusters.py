@@ -58,4 +58,4 @@ for file in glob.glob("EBCEssentialPPIsWalktrap[0-9]*.csv"):
 	#print "Essential proteins: " + str(totalEssentials)
 	clusterInfo.write(file + ";" + str((float(totalFunctions) / float(totalGenes))).replace('.', ',') + ";" + 
 		str(float(totalEssentials) / float(totalGenes)).replace('.', ',') + ";" + 
-		str(totalEBC).replace('.', ',') + ";" + str(totalPPIs) + "\n")
+		str(float(totalEBC) / float(totalPPIs)).replace('.', ',') + ";" + str(totalPPIs) + "\n")
