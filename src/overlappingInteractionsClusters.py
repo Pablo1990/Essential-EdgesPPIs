@@ -14,11 +14,11 @@ if len(sys.argv) == 4:
 
 		nameCluster1 = '../data/clustersPPIs/' + sys.argv[1] + '/' + sys.argv[1] + 'Info' + sys.argv[2] + '.csv'
 		cluster1 = open(nameCluster1, 'r')
-		cluster1.readline()
+		#cluster1.readline()
 
 		nameCluster2 = '../data/clustersPPIs/' + sys.argv[1] + '/' + sys.argv[1] + 'Info'  + sys.argv[3] + '.csv'
 		cluster2 = open(nameCluster2, 'r')
-		cluster2.readline()
+		#cluster2.readline()
 
 		genes = {}
 
@@ -28,7 +28,7 @@ if len(sys.argv) == 4:
 			gene = geneFields.split(';')
 			if not (gene[0] in genes):
 				genes[gene[0]] = gene[0]
-			elif not (gene[1] in genes):
+			if not (gene[1] in genes):
 				genes[gene[1]] = gene[1]
 
 		cluster2Cont = 0
@@ -37,7 +37,7 @@ if len(sys.argv) == 4:
 			gene = geneFields.split(';')
 			if not (gene[0] in genes):
 				genes[gene[0]] = gene[0]
-			elif not (gene[1] in genes):
+			if not (gene[1] in genes):
 				genes[gene[1]] = gene[1]
 
 		#print genes
