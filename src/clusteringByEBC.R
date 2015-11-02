@@ -26,11 +26,11 @@ functionIndex[,3] <- as.numeric(levels(functionIndex[,3])[functionIndex[,3]])
 
 #functionIndex[,3] <- functionIndex[,3]
 
-cluster <- cluster_edge_betweenness(graphM)
+#cluster <- cluster_edge_betweenness(graphM)
 
 #cluster <- cluster_walktrap(graphM, steps = 12, weights = functionIndex[,3])
 
-#cluster <- cluster_spinglass(graphM, spins = 50, weights = functionIndex[,3])
+cluster <- cluster_spinglass(graphM, spins = 25, weights = functionIndex[,3])
 
 #cluster <- cluster_fast_greedy(graphM, weights = functionIndex[,3])
 
@@ -56,7 +56,7 @@ for (i in 1:length(cluster)){
     write.graph(clusterGraph, file = paste0("data/clustersPPIs/clusterEBC", cont, '.csv'), format = 'ncol')
     eCluster <- read.csv2(file = paste0("data/clustersPPIs/clusterEBC", cont, '.csv'), header = F)
     eCluster[, 2] <- edge_betweenness(clusterGraph) 
-    write.csv2(eCluster, file = paste0("data/clustersPPIs/EBC", cont, '.csv'))
+    write.csv2(eCluster, file = paste0("data/clustersPPIs/Spinglass25spinsWeighted", cont, '.csv'))
   }
 }
 print (max(lengthsOfEdges))

@@ -1,15 +1,15 @@
 #Developed by Pablo Vicente-Munuera
 
-allFile = open('../data/clustersTogether/ClusterEBC.csv', 'w')
+allFile = open('../data/clustersTogether/ClusterSpinglass25spinsWeighted.csv', 'w')
 
 
 for i in range(1,127) :
-	nameFi = '../data/clustersPPIs/EBC' + str(i) + '.csv'
+	nameFi = '../data/clustersPPIs/Spinglass25spinsWeighted' + str(i) + '.csv'
 	ebcs = open(nameFi, 'r')
 	ebcs.readline()
 	print i
 
-	nameOut = '../data/clustersPPIs/EBCInfo' + str(i) + '.csv'
+	nameOut = '../data/clustersPPIs/Spinglass25spinsWeightedInfo' + str(i) + '.csv'
 	final = open(nameOut, 'w')
 
 	for ebc in ebcs:
