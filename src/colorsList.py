@@ -17,7 +17,7 @@ coloursOuput = open('../data/colorListOut.txt', 'w')
 34 - 12845311 - pink-purple
 36 - 16711935 - magenta
 38 - 16751001 - skin
-40 - 15073228 - light green
+40 - 2653184 - dark green - 0 124 21
 41 - 10046464 - brown
 42 - 6684723 - garnet
 43 - 15073279 - light blue
@@ -56,7 +56,7 @@ for function in functions:
 		elif f == '38':
 			colours += '16751001,'
 		elif f == '40':
-			colours += '15073228,'
+			colours += '2653184,'
 		elif f == '41':
 			colours += '10046464,'
 		elif f == '42':
