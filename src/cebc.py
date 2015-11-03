@@ -1,9 +1,16 @@
+#!/usr/bin/python
+#Developed by Pablo Vicente-Munuera
+
 import networkx as nx
 import numpy
 
+# Purpose: New implementation (faster than the R one) of the communicability
+# edge betweenness centrality based on the edge betweenness centrality of
+# networkx
 def communicability_edge_betweenness_centrality(G, normalized=True):
     import scipy
     import scipy.linalg
+
     edgelist = G.edges() # ordering of nodes in matrix
     n = len(edgelist)
     nodelist = G.nodes()
@@ -40,5 +47,6 @@ def communicability_edge_betweenness_centrality(G, normalized=True):
     #sc = _rescale(sc,normalized=normalized)
     return sc
 
+#Example of execution
 G=nx.read_edgelist("/Users/pablovm1990/Documents/Dropbox/MScBioinformatics/Thesis/Project/Essential-EdgesPPIs/edgeList.csv")
 cebc = communicability_edge_betweenness_centrality(G)
