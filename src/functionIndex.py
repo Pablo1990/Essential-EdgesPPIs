@@ -1,11 +1,11 @@
 #Developed by Pablo Vicente-Munuera
 
-ppis = open('../data/ppis.csv', 'r')
+ppis = open('../data/PPIsInfo/ppis.csv', 'r')
 ppis.readline()
 
 genesFile = open('../data/genes_function.csv', 'r')
 
-overlapFile = open('../data/PPIsFunctionIndex.csv', 'w')
+overlapFile = open('../data/PPIsInfo/PPIsFunctionIndex.csv', 'w')
 overlapFile.write('gene1;gene2;index\n')
 
 cont = 0

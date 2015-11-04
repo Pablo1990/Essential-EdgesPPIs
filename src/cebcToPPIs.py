@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #Developed by Pablo Vicente-Munuera
 
 edgelist = open('../data/edgelistPython.txt', 'r')
