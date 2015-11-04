@@ -1,5 +1,7 @@
 #Developed by Pablo Vicente-Munuera
 
+#Purpose: Calculate the communicability distance and angle from all of the clusters of one method.
+
 library('igraph')
 source('~/Documents/Dropbox/MScBioinformatics/Thesis/Project/Essential-EdgesPPIs/src/lib/translationMatlabCode.R', echo=TRUE)
 

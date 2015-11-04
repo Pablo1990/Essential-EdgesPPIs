@@ -1,12 +1,8 @@
 #!/usr/bin/python
 #Developed by Pablo Vicente-Munuera
 
-#Purpose: 
-
-functions = open('../data/colorList.txt', 'r')
-
-coloursOuput = open('../data/colorListOut.txt', 'w')
-
+#Purpose: From a list of functions of each protein, output the
+# color related to that function. This is the list:
 '''
 1 - 16711680 - RED
 2 - 16753152 - Orange
@@ -20,7 +16,7 @@ coloursOuput = open('../data/colorListOut.txt', 'w')
 34 - 12845311 - pink-purple
 36 - 16711935 - magenta
 38 - 16751001 - skin
-40 - 2653184 - dark green - 0 124 21
+40 - 2653184 - dark green
 41 - 10046464 - brown
 42 - 6684723 - garnet
 43 - 15073279 - light blue
@@ -28,6 +24,12 @@ coloursOuput = open('../data/colorListOut.txt', 'w')
 16 - 0 - black
 18 - 16777215 - white
 '''
+
+functions = open('../data/colorList.txt', 'r')
+
+coloursOuput = open('../data/colorListOut.txt', 'w')
+
+
 
 for function in functions:
 	fun = function[:-1].split(', ')
