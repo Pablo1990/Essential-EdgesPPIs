@@ -1,5 +1,8 @@
+#!/usr/bin/python
 #Developed by Pablo Vicente-Munuera
 import glob, os
+
+#Purpose: 
 
 genesFile = open('../data/genes_function_Essentials.csv', 'r')
 
