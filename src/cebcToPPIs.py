@@ -1,6 +1,8 @@
 #!/usr/bin/python
 #Developed by Pablo Vicente-Munuera
 
+#Purpose: 
+
 edgelist = open('../data/edgelistPython.txt', 'r')
 genesNumbers = open('../data/genesNumbers.csv', 'r')
 genesNumbers.readline()

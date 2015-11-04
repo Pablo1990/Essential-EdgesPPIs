@@ -1,4 +1,7 @@
+#!/usr/bin/python
 #Developed by Pablo Vicente-Munuera
+
+#Purpose: 
 
 functions = open('../data/colorList.txt', 'r')
 
@@ -24,7 +27,6 @@ coloursOuput = open('../data/colorListOut.txt', 'w')
 47 - 13421823 - mallow
 16 - 0 - black
 18 - 16777215 - white
-
 '''
 
 for function in functions:
