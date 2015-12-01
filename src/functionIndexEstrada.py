@@ -2,7 +2,7 @@
 #Developed by Pablo Vicente-Munuera
 
 #Our PPIs order by EBC
-ppis = open('../data/PPIsInfo/ppis.csv', 'r')
+ppis = open('../data/PPIsInfo/ppisOrderByCommAngle.csv', 'r')
 #Reading the header
 ppis.readline()
 
@@ -10,7 +10,7 @@ ppis.readline()
 genesFile = open('../data/genes_function.csv', 'r')
 
 #The output file
-overlapFile = open('../data/PPIsInfo/PPIsFunctionIndexEstrada.csv', 'w')
+overlapFile = open('../data/PPIsInfo/PPIsFunctionIndexEstradaComm.csv', 'w')
 overlapFile.write('gene1;gene2;index;overlap\n') #The header
 
 #Counter of PPIs

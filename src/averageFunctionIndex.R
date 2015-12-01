@@ -2,11 +2,11 @@
 
 library('igraph')
 
-ppis <- read.csv2(file = "data/PPIsInfo/PPIsFunctionIndexEstradaEssential.csv")
+ppis <- read.csv2(file = "data/PPIsInfo/PPIsFunctionIndexEstradaCommEssential.csv")
 
-#ppis$index <- as.numeric(levels(ppis$index)[ppis$index])
+ppis$index <- as.numeric(levels(ppis$index)[ppis$index])
 
-i <- 6609
+i <- 200
 
 mean(ppis[1:i,][ppis[1:i,]$Type.of.link=="EE",]$index)
 

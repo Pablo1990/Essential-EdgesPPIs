@@ -11,6 +11,7 @@ library('igraph')
 
 adjacencyData <- read.csv(header = F, file = "data/YeastS-main.txt", sep = "\t")
 
+
 vertices <- read.csv2(header = F, file = "docs/proteins.csv")
 
 vertices <- vertices$V2
@@ -23,3 +24,4 @@ adjacencyMatrix <- as.matrix(adjacencyData)
 diag(adjacencyMatrix) <- 0
 
 graphM <- graph.adjacency(adjacencyMatrix, mode = "undirected")
+write.graph(graph = graphM, file = "edgeslistPython.csv", format = 'edgelist')
